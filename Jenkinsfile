@@ -1,5 +1,5 @@
 pipeline {
-    agent tomcat_server
+    agent { label 'tomcat_server' }
     
     tools
     {
