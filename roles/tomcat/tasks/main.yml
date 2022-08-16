@@ -46,7 +46,7 @@
     state: directory
 
 - name: Configure Tomcat server
-  copy: src=tomcat.service dest=/etc/systemd/system/ mode=0755
+  copy: src=./tomcat.service dest=/etc/systemd/system/ mode=0755
 
 
   
