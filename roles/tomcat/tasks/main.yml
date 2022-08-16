@@ -65,11 +65,11 @@
  # notify: restart tomcat
   
 - name: Start and enable Tomcat service
-    systemd:
-      name: tomcat
-      state: started
-      enabled: true
-      daemon_reload: true
+  systemd:
+    name: tomcat
+    state: started
+    enabled: true
+    daemon_reload: true
   
 #- name: Start Tomcat
  # service: name=tomcat state=started enabled=yes
