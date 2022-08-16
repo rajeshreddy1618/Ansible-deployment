@@ -46,8 +46,7 @@
     state: directory
 
 - name: Configure Tomcat server
-  template: src=server.xml dest=opt/tomcat/conf/
-  
+  template: src=tomcat.service dest=/etc/systemd/system/ mode: 0755
 
 
   
@@ -64,12 +63,14 @@
 
 
   notify: restart tomcat
-
-- name: Install Tomcat init script
-  copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
-
+  
 - name: Start Tomcat
   service: name=tomcat state=started enabled=yes
 
-- name: wait for tomcat to start
+#- name: Install Tomcat init script
+ # copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
+
+
+
+#- name: wait for tomcat to start
   wait_for: port={{http_port}}
