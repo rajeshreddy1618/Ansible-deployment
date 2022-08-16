@@ -46,7 +46,7 @@ pipeline {
                  
              
                
-               sh "ansible-playbook main.yml -i inventory.ini -e "ansible_become_password=jenkins""
+               sh "ansible-playbook main.yml -i inventory/dev/hosts --user jenkins --key-file ~/.ssh/id_rsa""
 
                
             
