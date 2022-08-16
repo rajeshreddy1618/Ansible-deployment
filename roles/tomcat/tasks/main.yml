@@ -62,10 +62,17 @@
   copy: src=./target/LoginWebApp-1.war dest=/opt/apache-tomcat-9.0.65/webapps/
 
 
-  notify: restart tomcat
+ # notify: restart tomcat
   
-- name: Start Tomcat
-  service: name=tomcat state=started enabled=yes
+- name: Start and enable Tomcat service
+    systemd:
+      name: tomcat
+      state: started
+      enabled: true
+      daemon_reload: true
+  
+#- name: Start Tomcat
+ # service: name=tomcat state=started enabled=yes
 
 #- name: Install Tomcat init script
  # copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
