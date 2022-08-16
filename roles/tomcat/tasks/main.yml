@@ -10,11 +10,24 @@
   become: True
   become_method: sudo
 
-- name: Download Tomcat
-  get_url: url=https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz dest=/opt/apache-tomcat-9.065.tar.gz
+##- name: Download Tomcat and Extract archive
+  ##get_url: url=https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz dest=/opt/apache-tomcat-9.065.tar.gz
 
-- name: Extract archive
-  command: chdir=/usr/share /bin/tar xvf /opt/ -C /opt/ creates=/opt/apache-tomcat-9.0.65
+#- name: Extract archive
+ # command: chdir=/usr/share /bin/tar xvf /opt/apache-tomcat-9.0.65.tar.gz -C /opt/ creates=/opt/apache-tomcat-9.0.65
+- name: create /opt/tomcat directory
+  file:
+     path: /opt/tomcat
+     state: directory
+     mode: 0755
+
+
+- name: Download Tomcat and Extract archive
+  unarchive:
+   src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
+   dest: /opt/tomcat
+   remote_src: yes
+   extra_opts: [--strip-components=1]
 
 - name: Symlink install directory
   file: src=/opt/apache-tomcat-9.0.65 path=/usr/share/tomcat state=link
