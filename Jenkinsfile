@@ -46,7 +46,7 @@ pipeline {
                  
              
                
-               sh "ansible-playbook main.yml"
+               sh "ansible-playbook main.yml -i inventory.ini -e "ansible_become_password=jenkins""
 
                
             
