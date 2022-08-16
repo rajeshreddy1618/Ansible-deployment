@@ -1,6 +1,6 @@
 ---
 - name: Install Java install JDK 11
-  yum: name=openjdk-11-jdk state=present
+  apt: name=openjdk-11-jdk state=present
 
 - name: add group "tomcat"
   group: name={{tomcat_group}}
