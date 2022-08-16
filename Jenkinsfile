@@ -46,7 +46,7 @@ pipeline {
                  
              
                
-               sh "ansible-playbook main.yml --ask-become-pass"
+               sh "ansible-playbook main.yml"
 
                
             
