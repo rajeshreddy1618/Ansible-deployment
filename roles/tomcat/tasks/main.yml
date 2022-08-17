@@ -33,9 +33,7 @@
   file: src=/opt/apache-tomcat-9.0.65 path=/usr/share/tomcat state=link force=yes
 
 
-#- name: Change ownership of Tomcat installation
- # file: path=/usr/share/tomcat/ owner=tomcat group=tomcat state=directory recurse=yes
- 
+
 - name: Change ownership
   file:
     path: /opt/tomcat
@@ -62,7 +60,7 @@
   copy: src=./target/LoginWebApp-1.war dest=/opt/tomcat/webapps/
 
 
- # notify: restart tomcat
+  notify: restart tomcat
   
 - name: Start and enable Tomcat service
   systemd:
@@ -71,13 +69,3 @@
     enabled: true
     daemon_reload: true
   
-#- name: Start Tomcat
- # service: name=tomcat state=started enabled=yes
-
-#- name: Install Tomcat init script
- # copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
-
-
-
-#- name: wait for tomcat to start
-#  wait_for: port={{http_port}}
